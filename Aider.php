@@ -256,7 +256,20 @@ trait Aider {
 
     }
 
+final private function typeBuilderUpdateSqlChangeRebate($data, $changeRebate, $size = 100) {
 
+        $sql = array();
+
+        foreach ($data as $tableName => $datum) {
+
+            $this->chuck($this->changeLineRebate($datum, $changeRebate), $this->size($datum, $size), function ($key, $block) use ($tableName, &$sql) {
+
+                $sql[$tableName][$key] = $this->case_batchUpdate($tableName, 'id', $block);
+
+            });
+        }
+        return $sql;
+    }
 
 
 
